@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine? ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+      overflow: hidden;
+    }
+
+    .card {
+      background: #fffafc;
+      padding: 35px 25px;
+      border-radius: 25px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 25px 50px rgba(255, 77, 109, 0.25);
+      animation: pop 1s ease;
+      position: relative;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 { color: #ff5c8a; }
+    h2 { color: #ff7aa2; }
+
+    p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .buttons { display: flex; justify-content: center; gap: 15px; }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .yes { background: #ff5c8a; color: white; }
+    .yes:hover { transform: scale(1.08); }
+
+    .no { background: #ffe3eb; color: #ff5c8a; position: absolute; }
+
+    .hearts span {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: float 6s infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    .message {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff5c8a;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts"></div>
+
+  <div class="card">
+    <h1>Hey My Dear Friend ❤️</h1>
+    <p>From the little smiles to the longest conversations, from the calm moments to the chaotic laughs — every part of my life feels warmer, softer, and more beautiful because of you 💗<br><br>You are my comfort, my excitement, my safe place, and my favorite person all wrapped into one. With you, ordinary days feel special and special days feel magical ✨<br><br>Santara, I don’t just want this Valentine’s with you — I want every little moment, every silly laugh, every memory yet to be made, with you by my side 💕</p>
+    <h2>Will you be my Valentine? 💌</h2>
+
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes 😍</button>
+      <button class="no" onmouseover="moveNo(this)" onmousemove="moveNo(this)">No 🙈</button>
+    </div>
+
+    <div class="message" id="message">
+      <div style="font-size:80px;margin-bottom:10px">🥳💖🌸</div>
+      <div>She said YESSS 🥹💖✨<br><br>
+      This is officially our moment 🌸<br>
+      And guess what? 💌<br><br>
+      <strong>Our date is already planned.</strong><br>
+      Get ready to be spoiled, loved, and adored endlessly 😘<br><br>
+      I love you forever, My Dear Friend 💕</div>
+    </div>
+    </div>
+  </div>
+
+  <script>
+    const music = new Audio('https://www.bensound.com/bensound-music/bensound-love.mp3');
+    music.loop = true;
+
+    function moveNo(btn) {
+      const card = document.querySelector('.card');
+      const maxX = card.clientWidth - btn.offsetWidth;
+      const maxY = card.clientHeight - btn.offsetHeight;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    function sayYes() {
+      music.play();
+      document.getElementById('message').style.display = 'block';
+      createHearts();
+      createPastels();
+    }
+
+    function createHearts() {
+      const container = document.querySelector('.hearts');
+      const emojis = ['💖','💕','🌸','✨','🎀','🧸'];
+      for (let i = 0; i < 40; i++) {
+        const span = document.createElement('span');
+        span.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.animationDuration = 3 + Math.random() * 3 + 's';
+        container.appendChild(span);
+        setTimeout(() => span.remove(), 6000);
+      }
+    }
+
+    function createPastels() {
+      const colors = ['#ffd1dc','#ffe4e9','#fff0f5'];
+      for (let i = 0; i < 15; i++) {
+        const div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.width = '12px';
+        div.style.height = '12px';
+        div.style.borderRadius = '50%';
+        div.style.background = colors[Math.floor(Math.random() * colors.length)];
+        div.style.left = Math.random() * 100 + 'vw';
+        div.style.top = '100vh';
+        div.style.animation = 'float 5s linear';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
